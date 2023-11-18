@@ -14,22 +14,19 @@ public class DeleteFilter extends CommonFilterImpl {
     public boolean specificComputationForFilter() throws IOException {
         int byteRead;
         byte[] buffer = new byte[1024];
-        int idx = 0;
-
+        int index = 0;
         while (true) {
             byteRead = in.read();
-            if (byteRead != -1) buffer[idx++] = (byte) byteRead;
+            if (byteRead != -1) buffer[index++] = (byte) byteRead;
             if (byteRead == '\n' || byteRead == -1) {
-                if (idx > 0) {
-                    String studentRecord = new String(buffer, 0, idx).trim();
-                    if(studentRecord.contains("2013")) {
-	                    for (String course : courseList) {
-	                        studentRecord = studentRecord.replaceAll(" " + course, "");
-	                    }
-	                    out.write((studentRecord + "\n").getBytes());
+                if (index > 0) {
+                    String studentRecord = new String(buffer, 0, index).trim();
+                    for (String course : courseList) {
+                        studentRecord = studentRecord.replaceAll(" " + course, "");
                     }
+                    out.write((studentRecord + "\n").getBytes());
                 }
-                idx = 0;
+                index = 0;
                 if (byteRead == -1) return true;
             }
         }

@@ -15,9 +15,9 @@ public class SourceFilter extends CommonFilterImpl{
     }
     @Override
     public boolean specificComputationForFilter() throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(new File(sourceFile)))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(sourceFile)))) {
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 line += "\n";
                 for (PipedOutputStream out : outputs) {
                     out.write(line.getBytes());
@@ -27,5 +27,4 @@ public class SourceFilter extends CommonFilterImpl{
         }
         return true;
     }
-
 }

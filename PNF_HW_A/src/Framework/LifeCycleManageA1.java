@@ -6,26 +6,26 @@ package Framework;
 import java.util.Arrays;
 
 import Commponent.AddFilter.AddFilter;
-import Components.Middle.MiddleFilter;
+import Components.Middle.SelectFilter;
 import Components.Sink.SinkFilter;
 import Components.Source.SourceFilter;
 
 public class LifeCycleManageA1 {
     public static void main(String[] args) {
         try {
-            CommonFilter filter1 = new SourceFilter("Students.txt");
-            CommonFilter filter2 = new SinkFilter("Output.txt");
-            CommonFilter filter3 = new MiddleFilter("CS", true);
-            CommonFilter filter4 = new AddFilter(Arrays.asList("12345", "23456"));
+            CommonFilter studentSourceFilter = new SourceFilter("Students.txt");
+            CommonFilter outputFilter = new SinkFilter("Output.txt");
+            CommonFilter selectFilter = new SelectFilter("", "CS", true);
+            CommonFilter addFilter = new AddFilter(Arrays.asList("12345", "23456"));
 
-            filter1.connectOutputTo(filter3);
-            filter3.connectOutputTo(filter4);
-            filter4.connectOutputTo(filter2);
+            studentSourceFilter.connectOutputTo(selectFilter);
+            selectFilter.connectOutputTo(addFilter);
+            addFilter.connectOutputTo(outputFilter);
 
-            Thread thread1 = new Thread(filter1);
-            Thread thread2 = new Thread(filter2);
-            Thread thread3 = new Thread(filter3);
-            Thread thread4 = new Thread(filter4);
+            Thread thread1 = new Thread(studentSourceFilter);
+            Thread thread2 = new Thread(outputFilter);
+            Thread thread3 = new Thread(selectFilter);
+            Thread thread4 = new Thread(addFilter);
 
             thread1.start();
             thread2.start();

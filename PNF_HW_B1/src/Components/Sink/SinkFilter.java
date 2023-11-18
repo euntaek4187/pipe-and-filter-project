@@ -14,12 +14,12 @@ public class SinkFilter extends CommonFilterImpl {
     }
     @Override
     public boolean specificComputationForFilter() throws IOException {
-        try (FileWriter fw = new FileWriter(this.sinkFile)) {
+        try (FileWriter fileWriter = new FileWriter(this.sinkFile)) {
             for (PipedInputStream input : inputs) {
-                int byte_read;
-                while ((byte_read = input.read()) != -1) {
-                    fw.write(byte_read);
-                    fw.flush(); 
+                int byteRead;
+                while ((byteRead = input.read()) != -1) {
+                    fileWriter.write(byteRead);
+                    fileWriter.flush(); 
                 }
             }
             return true; 
