@@ -1,7 +1,7 @@
 /**
  * Copyright(c) 2021 All rights reserved by Jungho Kim in Myungji University.
  */
-package Components.Middle;
+package Components.SelectFilter;
 import java.io.IOException;
 import Framework.CommonFilterImpl;
 public class SelectFilter extends CommonFilterImpl{

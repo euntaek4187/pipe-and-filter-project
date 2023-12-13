@@ -2,14 +2,11 @@
  * Copyright(c) 2021 All rights reserved by Jungho Kim in Myungji University.
  */
 package Framework;
-
 import java.util.Arrays;
-
 import Commponent.AddFilter.AddFilter;
-import Components.Middle.SelectFilter;
+import Components.SelectFilter.SelectFilter;
 import Components.Sink.SinkFilter;
 import Components.Source.SourceFilter;
-
 public class LifeCycleManageA1 {
     public static void main(String[] args) {
         try {
